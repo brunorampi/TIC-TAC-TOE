@@ -14,3 +14,8 @@ border: 1px solid black;
 height: 200px;
 width: 200px;
 }
+
+.message {
+  padding:10px;
+  font-size: 20px;
+}
