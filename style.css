@@ -1,0 +1,16 @@
+
+
+#body{
+  with:800px;
+  height:800px;
+  background-color: white;
+}
+table{
+  width:600px;
+  height: 600px;
+}
+td {
+border: 1px solid black;
+height: 200px;
+width: 200px;
+}
