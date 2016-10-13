@@ -21,28 +21,15 @@ var round= 0;
 //  [box0, box3, box6], [box1, box4, box7],
 //                     [box2, box5, box8], [box0, box4, box8], [box2, box4, box6]];
 
-var displayMessage = function( message ) {
-    $( '.message' ).html( message );
+var displayMessage = function(message) {
+    $( '.message' ).html(message);
   };
-
-// var AllowedMove = function() {
-//     round = 0;
-//     if ( $('.grid') === ' ') {
-//       return true;
-//     } else {
-//       displayMessage('Please choose an empty box');
-//     }
-// }
-
-// AllowedMove();
-
 
 $('.table').on('click',function(event) {
   // console.log($(event.target))
   if($(event.target).text() !== '') {
     return false;
   }
-
 
   if (currentPlayer==='X') {
     $('body').css("background-color","blue");
@@ -61,17 +48,27 @@ $('.table').on('click',function(event) {
 
 })
 
+function NewGame() {
+  if (round === 9) {
+    displayMessage ("It's a draw. Try AGAIN");
+    console.log ('draw');
+  } else if (checkWhoWin('X')) {
+    displayMessage (currentPlayer + ' wins. New Game ?');
+    console.log ('wiiiiiin');
+  }
+}
+
 
 function checkWhoWin(insideValue) {
   combinationRow1(insideValue);
-  // combinationRow2();
-  // combinationRow3();
-  // combinationColumn1();
-  // combinationColumn2();
-  // combinationColumn3();
-  // combinationColumn3();
-  // combinationDiagonal1();
-  // combinationDiagonal2();
+  combinationRow2(insideValue);
+  combinationRow3(insideValue);
+  combinationColumn1(insideValue);
+  combinationColumn2(insideValue);
+  combinationColumn3(insideValue);
+  combinationColumn3(insideValue);
+  combinationDiagonal1(insideValue);
+  combinationDiagonal2(insideValue);
   // if (round===9){
   //     displayMessage('DRAW, wanna play again?')
   // }
@@ -82,45 +79,46 @@ checkWhoWin();
 function combinationRow1(insideValue){
   if (grid[0][0].textContent === insideValue && grid[0][1].textContent === insideValue && grid[0][2].textContent === insideValue){
     console.log(grid[0][0].textContent  +  ' wins');
+    displayMessage(currentPlayer + ' wins. New Game ?');
   }
 }
 
 
-// function combinationRow2(insideValue){
-//   if (box3.innerHTML ===  box4.innerHTML  && box4.innerHTML === box5.innerHTML ){
-//     console.log('Player ' + box3.textContent + ' wins');
-//   }
-// }
-//
-// function combinationRow3(){
-//   if (box6.innerHTML === box7.innerHTML  && box7.innerHTML === box8.innerHTML ){
-//     console.log('Player ' + box6.textContent + ' wins');
-//   }
-// }
-//
-// function combinationColumn1(){
-//   if (box0.innerHTML === box3.innerHTML  && box3.innerHTML === box6.innerHTML ){
-//     console.log('Player ' + box0.textContent + ' wins');
-//   }
-// }
-// function combinationColumn2(){
-//   if (box1.innerHTML === box4.innerHTML  && box4.innerHTML === box7.innerHTML ){
-//     console.log('Player ' + box1.textContent + ' wins');
-//   }
-// }
-// function combinationColumn3(){
-//   if (box2.innerHTML === box5.innerHTML  && box5.innerHTML === box8.innerHTML ){
-//     console.log('Player ' + box2.textContent + ' wins');
-//   }
-// }
-// function combinationDiagonal1(){
-//   if (box0.innerHTML === 'X' && box4.innerHTML ==='X' && box8.innerHTML === 'X'){
-//     console.log('Player ' + box0.textContent + ' wins');
-//   }
-// }
-//
-// function combinationDiagonal2(){
-//   if (box2.innerHTML === box4.innerHTML  && box4.innerHTML === box6.innerHTML ){
-//     console.log('Player ' + box2.textContent + ' wins');
-//   }
-// }
+function combinationRow2(insideValue){
+  if (grid[1][0].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[1][2].textContent === insideValue ){
+    console.log(grid[1][0].textContent + ' wins');
+  }
+}
+
+function combinationRow3(insideValue){
+  if (grid[2][0].textContent === insideValue &&  grid[2][1].textContent === insideValue && grid[2][2].textContent === insideValue ){
+    console.log(grid[2][0].textContent + ' wins');
+  }
+}
+
+function combinationColumn1(insideValue){
+  if (grid[0][0].textContent === insideValue &&  grid[1][0].textContent === insideValue && grid[2][0].textContent === insideValue ){
+    console.log(grid[0][0].textContent +  + ' wins');
+  }
+}
+function combinationColumn2(insideValue){
+  if (grid[0][1].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[2][1].textContent === insideValue ){
+    console.log(grid[0][1].textContent  + ' wins');
+  }
+}
+function combinationColumn3(insideValue){
+  if (grid[0][2].textContent === insideValue &&  grid[1][2].textContent === insideValue && grid[2][2].textContent === insideValue ){
+    console.log(grid[0][2].textContent + ' wins');
+  }
+}
+function combinationDiagonal1(insideValue){
+  if (grid[0][0].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[2][2].textContent === insideValue){
+    console.log(grid[0][0].textContent  + ' wins');
+  }
+}
+
+function combinationDiagonal2(insideValue){
+  if (grid[0][2].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[2][0].textContent === insideValue ){
+    console.log(grid[0][2].textContent  + ' wins');
+  }
+}
