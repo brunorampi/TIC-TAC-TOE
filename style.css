@@ -1,34 +1,93 @@
 <link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 
 #body{
-  with:800px;
-  height:800px;
+  width:100%;
+  margin: 1% auto;
   background-color: white;
+  height:100%;
 }
-table{
-  width:600px;
-  height: 600px;
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-left: 100px;
+  height:100%;
 }
+
 td {
-border: 1px solid black;
-height: 200px;
-width: 200px;
-text-align: center;
-font-family:'Ruslan Display', cursive;
-font-size: 6em;
+  width: 33.333%;
+  border: 6px solid #222;
+  text-align: center;
+  font-family: fantasy;
+  font-size: 8em;
+  vertical-align: middle;
+  height: 33.33333%;
+  line-height: 300%;
 }
+td::after {
+  content: '';
+  display: block;
+  margin-top: 100%;
+}
+
+td {
+  border: 6px solid #222;
+}
+
+td:first-of-type {
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+td:nth-of-type(2) {
+  border-top-color: transparent;
+}
+
+td:nth-of-type(3) {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+tr:nth-of-type(3) td {
+  border-bottom-color: transparent;
+}
+
+caption {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-weight: bold;
+  color: #999;
+  font-size: 60px;
+}
+
+
+
 
 .message {
   padding:10px;
   font-size: 20px;
+  font-family: 'Ruslan Display', cursive;
+
 }
 
 #player1Name{
   color:blue;
   float:left;
+  position: fixed;
+  top: 30px;
+  left:10px;
 }
 
-#plaer2Name{
+#player2Name{
   color:red;
   float:left;
+  position: fixed;
+  top: 30px;
+  right: 10px;
+}
+
+#yes {
+  border: 2px solid;
+  border-radius: 100px;
+  background-color: green;
 }
