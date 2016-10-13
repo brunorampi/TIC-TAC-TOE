@@ -1,4 +1,4 @@
-
+<link href="https://fonts.googleapis.com/css?family=Ruslan+Display" rel="stylesheet">
 
 #body{
   with:800px;
@@ -13,9 +13,22 @@ td {
 border: 1px solid black;
 height: 200px;
 width: 200px;
+text-align: center;
+font-family:'Ruslan Display', cursive;
+font-size: 6em;
 }
 
 .message {
   padding:10px;
   font-size: 20px;
+}
+
+#player1Name{
+  color:blue;
+  float:left;
+}
+
+#plaer2Name{
+  color:red;
+  float:left;
 }
