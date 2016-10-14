@@ -17,11 +17,34 @@ var grid = [[box0, box1, box2], [box3, box4, box5], [box6, box7, box8]];
 //Variables for players, rounds, games and button
 var pl1 = 'X';
 var pl2 = 'O';
-var currentPlayer= 'X';
+var currentPlayer = pl1;
 var round = 0;
-var game = 0;
+var game1 = 0;
+var game2 = 0;
 var yesBtn = document.getElementById('yes');
 var noBtn = document.getElementById('no');
+var pl1Games = document.getElementsByTagName('span')[0];
+var pl2Games = document.getElementsByTagName('span')[1] ;
+
+
+// function to increment the number of winnings
+
+var winningGames = function(num1,num2) {
+   return num1+num2;
+}
+var calculateWins1 = function(){
+  var num1 = game1;
+  var num2 = 1;
+  game1 = winningGames(num1,num2);
+  pl1Games.textContent = game1;
+}
+var calculateWins2 = function(){
+  var num1 = game2;
+  var num2 = 1;
+  game2 = winningGames(num1,num2);
+  pl2Games.textContent = game2;
+}
+
 
 // propmt to ask players' names
 var player1 = prompt("Player 1 please enter your name");
@@ -47,13 +70,12 @@ function roundOfPlay(){
   }
 
 // part of the switching players function
-  if (currentPlayer===pl1) {
+  if (currentPlayer === pl1) {
     $(event.target).css("background-color","blue");
-    event.target.textContent=pl1;
-    }
-    else {
+    event.target.textContent = pl1;
+  } else {
     $(event.target).css("background-color","red");
-    event.target.textContent=pl2;
+    event.target.textContent = pl2;
   }
   round++;
 
@@ -64,7 +86,7 @@ function roundOfPlay(){
   }else {
     currentPlayer=pl1;
   }
-  
+
 }
 
 // add an Event Listener when a player clicks in one box.
@@ -82,12 +104,12 @@ yesBtn.addEventListener('click', function(){
     round = 0;
     currentPlayer = 'X';
     $('.table').on('click',roundOfPlay)
+    displayMessage(' ')
 })
 // function in case of no winning
 function draw() {
   if (round === 9) {
     displayMessage ("It's a draw. Try AGAIN");
-    console.log ('draw');
   }
 }
 // funtion to inspect who wins
@@ -96,6 +118,15 @@ function checkWhoWin(insideValue) {
       combinationRow3(insideValue)|| combinationColumn1(insideValue) ||
       combinationColumn2(insideValue) || combinationColumn3(insideValue) ||
       combinationDiagonal1(insideValue) || combinationDiagonal2(insideValue) ) {
+        if(currentPlayer === pl1){
+          displayMessage(player1 + ' wins. New Game ?');
+          calculateWins1();
+        } else if (currentPlayer === pl2) {
+          displayMessage(player2 + ' wins. New Game ?');
+          calculateWins2();
+        }
+    $('.table').off('click');
+
     return true;
   } else {
     draw();
@@ -106,9 +137,6 @@ function checkWhoWin(insideValue) {
 // functions for all the possible combinations
 function combinationRow1(insideValue){
   if (grid[0][0].textContent === insideValue && grid[0][1].textContent === insideValue && grid[0][2].textContent === insideValue){
-    console.log(grid[0][0].textContent  +  ' wins');
-    displayMessage(currentPlayer + ' wins. New Game ?');
-    $('.table').off('click');
     return true;
   }
   return false;
@@ -116,9 +144,6 @@ function combinationRow1(insideValue){
 
 function combinationRow2(insideValue){
   if (grid[1][0].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[1][2].textContent === insideValue ){
-    console.log(grid[1][0].textContent + ' wins');
-    $('.table').off('click');
-    displayMessage(currentPlayer + ' wins. New Game ?');
     return true;
   }
   return false;
@@ -126,8 +151,6 @@ function combinationRow2(insideValue){
 
 function combinationRow3(insideValue){
   if (grid[2][0].textContent === insideValue &&  grid[2][1].textContent === insideValue && grid[2][2].textContent === insideValue ){
-    console.log(grid[2][0].textContent + ' wins');
-    displayMessage(currentPlayer + ' wins. New Game ?');
     return true;
   }
   return false;
@@ -135,8 +158,6 @@ function combinationRow3(insideValue){
 
 function combinationColumn1(insideValue){
   if (grid[0][0].textContent === insideValue &&  grid[1][0].textContent === insideValue && grid[2][0].textContent === insideValue ){
-    console.log(grid[0][0].textContent + ' wins');
-    $('.table').off('click');
     displayMessage(currentPlayer + ' wins. New Game ?');
     return true;
   }
@@ -145,8 +166,6 @@ function combinationColumn1(insideValue){
 
 function combinationColumn2(insideValue){
   if (grid[0][1].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[2][1].textContent === insideValue ){
-    console.log(grid[0][1].textContent  + ' wins');
-    $('.table').off('click');
     displayMessage(currentPlayer + ' wins. New Game ?');
     return true;
   }
@@ -155,8 +174,6 @@ function combinationColumn2(insideValue){
 
 function combinationColumn3(insideValue){
   if (grid[0][2].textContent === insideValue &&  grid[1][2].textContent === insideValue && grid[2][2].textContent === insideValue ){
-    console.log(grid[0][2].textContent + ' wins');
-    $('.table').off('click');
     displayMessage(currentPlayer + ' wins. New Game ?');
     return true;
   }
@@ -165,8 +182,6 @@ function combinationColumn3(insideValue){
 
 function combinationDiagonal1(insideValue){
   if (grid[0][0].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[2][2].textContent === insideValue){
-    console.log(grid[0][0].textContent  + ' wins');
-    $('.table').off('click');
     displayMessage(currentPlayer + ' wins. New Game ?');
     return true;
   }
@@ -175,9 +190,6 @@ function combinationDiagonal1(insideValue){
 
 function combinationDiagonal2(insideValue){
   if (grid[0][2].textContent === insideValue &&  grid[1][1].textContent === insideValue && grid[2][0].textContent === insideValue ){
-    console.log(grid[0][2].textContent  + ' wins');
-    $('.table').off('click');
-    displayMessage(currentPlayer + ' wins. New Game ?');
     return true;
   }
   return false;

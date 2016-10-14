@@ -6,10 +6,19 @@
     <title>TIC TAC TOE</title>
   </head>
   <body>
-    
+
+<div class="names">
 
     <h2 id="player1Name"></h2>
+    <h3 id="wins1"> wins: <span></span> </h3>
+
     <h2 id="player2Name"></h2>
+    <h3 id="wins2"> wins: <span></span> </h3>
+
+  </div>
+
+
+
 
 
     <table class="table">
@@ -17,32 +26,28 @@
         TIC TAC TOE
       </caption>
       <tr>
-        <td id = "0"></td>
-        <td id = "1"></td>
-        <td id = "2"></td>
+        <td class='square' id="0"></td>
+        <td class='square' id="1"></td>
+        <td class='square' id="2"></td>
       </tr>
       <tr>
-        <td id="3"></td>
-        <td id="4"></td>
-        <td id="5"></td>
+        <td class='square' id="3"></td>
+        <td class='square' id="4"></td>
+        <td class='square' id="5"></td>
       </tr>
       <tr>
-        <td id="6"></td>
-        <td id="7"></td>
-        <td id="8"></td>
+        <td class='square' id="6"></td>
+        <td class='square' id="7"></td>
+        <td class='square' id="8"></td>
       </tr>
     </table>
 
+
+    <div class=decision>
+
     <h2 class='message'><h2>
     <button id="yes">YES</button>
-    <button id="no">NO</button>
-
-
-
-
-
-
-
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script src="tic_tac_toe.js"></script>
